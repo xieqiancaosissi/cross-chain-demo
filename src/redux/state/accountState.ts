@@ -38,7 +38,7 @@ export const initialState: AccountState = {
     collateral: {},
     borrowed: {},
     collateralAll: {},
-    
+
     positions: {},
     farms: {
       supplied: {},

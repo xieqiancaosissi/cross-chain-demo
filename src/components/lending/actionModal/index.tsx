@@ -31,7 +31,7 @@ import { fetchTokenBalances } from "@/redux/slice/accountSlice";
 import { formatSymbolName } from "@/utils/chainsUtil";
 import { getModalData } from "./utils";
 import { hideModal } from "@/redux/slice/appSlice";
-// import { computeRelayerGas } from "@/redux/selectors/computeRelayerGas";
+import { computeRelayerGas } from "@/redux/selectors/computeRelayerGas";
 import Action from "./Action";
 import ChainsSelector from "./chainsSelector";
 import { ASSETS_CHAINS_SUPPORT_UI } from "@/services/chainConfig";
@@ -49,11 +49,7 @@ import {
   SetUpFeeSelector,
 } from "./components";
 import Controls from "./Controls";
-import {
-  view_on_near,
-  config_near,
-  computeRelayerGas,
-} from "rhea-cross-chain-sdk";
+import { view_on_near, config_near } from "@rhea-finance/cross-chain-sdk";
 import { useChainAccountStore } from "@/stores/chainAccount";
 import useChainsLendingStatus, {
   useSelectedChainStatus,
@@ -148,12 +144,13 @@ export default function Modal() {
     mca,
   ]);
 
-  const gasData = computeRelayerGas({
-    nearStorageAmount,
-    mca,
-    relayerGasFees,
-    assets: assets.data,
-  });
+  const gasData = useAppSelector(
+    computeRelayerGas({
+      nearStorageAmount,
+      mca,
+      relayerGasFees,
+    })
+  );
   /** near gas end */
 
   // get fee and receive amount

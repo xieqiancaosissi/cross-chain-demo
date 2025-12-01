@@ -133,4 +133,3 @@ export const accountSlice = createSlice({
 export const { logoutAccount, setAccountId, setIsClaiming } =
   accountSlice.actions;
 export default accountSlice.reducer;
-

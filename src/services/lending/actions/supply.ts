@@ -1,8 +1,4 @@
-import {
-  config_near,
-  IExecutionResult,
-  IChain,
-} from "rhea-cross-chain-sdk";
+import { config_near, IExecutionResult, IChain } from "rhea-cross-chain-sdk";
 import { outChainToNearChainIntentsAction } from "./commonAction";
 
 export async function supply({

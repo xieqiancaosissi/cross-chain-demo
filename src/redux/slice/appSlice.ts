@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  getBoosterTokens,
-  getConfig,
-  IConfig,
-} from "rhea-cross-chain-sdk";
+import { getBoosterTokens, getConfig, IConfig } from "rhea-cross-chain-sdk";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { IIntentsResult } from "@/interface/lending/chains";
 

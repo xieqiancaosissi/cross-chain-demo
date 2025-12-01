@@ -6,10 +6,7 @@ import { useDebounce } from "react-use";
 import { Icon } from "@iconify/react";
 import { IActionChainSeleced } from "@/interface/lending/chains";
 import { EVM_CHAINS, ALL_CHAINS } from "@/services/chainConfig";
-import {
-  IChain,
-  pollingTransactionStatus,
-} from "rhea-cross-chain-sdk";
+import { IChain, pollingTransactionStatus } from "rhea-cross-chain-sdk";
 import { Img } from "@/components/common/img";
 import useWalletConnect from "@/hooks/useWalletConnect";
 import { useChainAccountStore } from "@/stores/chainAccount";

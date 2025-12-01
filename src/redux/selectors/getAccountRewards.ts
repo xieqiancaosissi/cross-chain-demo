@@ -5,11 +5,7 @@ import { shrinkToken } from "@/utils/numbers";
 import { RootState } from "../store";
 import { Asset } from "rhea-cross-chain-sdk";
 import { AssetsState } from "../state/assetState";
-import {
-  Farm,
-  AccountFarmRewardView,
-  Portfolio,
-} from "rhea-cross-chain-sdk";
+import { Farm, AccountFarmRewardView, Portfolio } from "rhea-cross-chain-sdk";
 import { IAccountFarms } from "../state/accountState";
 import { getStaking } from "./getStaking";
 import { INetTvlFarmRewards } from "@/interface/lending";

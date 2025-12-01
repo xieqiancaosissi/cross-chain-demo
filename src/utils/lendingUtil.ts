@@ -28,7 +28,8 @@ export const toUsd = (balance: string, asset: Asset) =>
     ? Number(
         shrinkToken(
           balance,
-          (asset?.metadata?.decimals || 0) + (asset?.config?.extra_decimals || 0)
+          (asset?.metadata?.decimals || 0) +
+            (asset?.config?.extra_decimals || 0)
         )
       ) * asset.price.usd
     : 0;
