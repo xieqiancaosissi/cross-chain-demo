@@ -155,7 +155,7 @@ const Records = ({ hidden }: { hidden: boolean }) => {
       if (!mca_id) return;
       try {
         setLoading(true);
-        const response = await getMultichainLendingHistory({
+        const response: any = await getMultichainLendingHistory({
           mca_id,
           page_number: page,
           page_size: PAGE_SIZE,

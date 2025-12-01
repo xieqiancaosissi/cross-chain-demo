@@ -115,7 +115,7 @@ export const getTokenNetBalanceRewards = createSelector(
               tokenId: assetId,
               dailyAmount,
               remainingAmount,
-              price: rewardAsset.price?.usd || 0,
+              price: Number(rewardAsset.price?.usd || 0),
               boosted_shares,
             });
           }

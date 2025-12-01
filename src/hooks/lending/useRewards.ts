@@ -90,7 +90,7 @@ export function useDailyRewards() {
 export function useTokenNetLiquidityRewards(tokenId: string) {
   const assets = useAppSelector(getAssets);
   const asset = assets.data[tokenId];
-  const rewards = getRewards("tokennetbalance", asset, assets.data);
+  const rewards = getRewards("tokennetbalance", asset, assets.data as any);
   return rewards;
 }
 
@@ -129,7 +129,7 @@ export function useStakeRewardApy() {
   // supply
   const totalSupplyProfit = suppliedRewards.reduce((sum, cur) => {
     const { tokenId, newDailyAmount } = cur;
-    return sum + (assets.data[tokenId].price?.usd || 0) * newDailyAmount;
+    return sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount);
   }, 0);
   const totalSupplyPrincipal = Object.entries(supplyFarms)
     .map(([tokenId]) => {
@@ -144,14 +144,14 @@ export function useStakeRewardApy() {
           assetDecimals
         )
       );
-      return balance * (asset.price?.usd || 0);
+      return balance * Number(asset.price?.usd || 0);
     })
     .reduce((acc, cur) => acc + cur, 0);
 
   // borrow
   const totalBorrowProfit = borrowedRewards.reduce((sum, cur) => {
     const { tokenId, newDailyAmount } = cur;
-    return sum + (assets.data[tokenId].price?.usd || 0) * newDailyAmount;
+    return sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount);
   }, 0);
   const totalBorrowedPrincipal = Object.entries(borrowFarms)
     .map(([tokenId]) => {
@@ -167,7 +167,7 @@ export function useStakeRewardApy() {
       const balance = Number(
         shrinkToken(borrowedBalance.toNumber(), assetDecimals)
       );
-      return balance * (asset.price?.usd || 0);
+      return balance * Number(asset.price?.usd || 0);
     })
     .reduce((acc, cur) => acc + cur, 0);
   // tokennet
@@ -194,11 +194,11 @@ export function useStakeRewardApy() {
     if (acc[assetTokenId]) {
       acc[assetTokenId].dailyRewardsUsd = new Decimal(
         acc[assetTokenId].dailyRewardsUsd
-      ).plus((assets.data[tokenId].price?.usd || 0) * newDailyAmount);
+      ).plus(Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount));
     } else {
       acc[assetTokenId] = {
         dailyRewardsUsd:
-          (assets.data[tokenId].price?.usd || 0) * newDailyAmount,
+          (+assets.data[tokenId].price?.usd || 0) * newDailyAmount,
         totalTokenNetPrincipal: totalTokenNetPrincipal.toFixed(),
         asset: assets.data[assetTokenId],
       };
@@ -209,7 +209,7 @@ export function useStakeRewardApy() {
   // net
   const totalNetProfit = netLiquidityRewards.reduce((sum, cur) => {
     const { tokenId, newDailyAmount } = cur;
-    return sum + (assets.data[tokenId].price?.usd || 0) * newDailyAmount;
+    return sum + (+assets.data[tokenId].price?.usd || 0) * newDailyAmount;
   }, 0);
   const [, totalCollateral] = getNetGains(portfolio.collaterals, assets);
   const [, totalSupplied] = getNetGains(portfolio.supplies, assets);

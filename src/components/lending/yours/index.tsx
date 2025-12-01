@@ -94,7 +94,7 @@ const Yours = () => {
         }
       }
 
-      const tokenUsd = amountRead * (asset.price?.usd || 0);
+      const tokenUsd = amountRead * +(asset.price?.usd || 0);
       totalUsd += tokenUsd;
     });
 

@@ -47,7 +47,7 @@ export const getAverageSupplyRewardApy = createSelector(
               totalBoostedShares > 0
                 ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
                 : 0;
-            return dailyAmount * (rewardAsset.price?.usd || 0);
+            return dailyAmount * +(rewardAsset.price?.usd || 0);
           })
           .reduce((acc, value) => acc + value, 0);
         const balance =
@@ -63,7 +63,7 @@ export const getAverageSupplyRewardApy = createSelector(
             : 0;
         return {
           dailyProfit: profit,
-          principal: balance * (asset.price?.usd || 0),
+          principal: balance * Number(asset.price?.usd || 0),
         };
       })
       .reduce(

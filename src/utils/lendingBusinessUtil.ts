@@ -4,7 +4,7 @@ import { intentsQuotationUi } from "@/services/lending/actions/commonAction";
 import { AssetsState } from "@/redux/state/assetState";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { expandToken, shrinkToken, expandTokenDecimal } from "@/utils/numbers";
-import { Portfolio } from "@/redux/state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk";
 import { IChain } from "rhea-cross-chain-sdk";
 
 export function getDebtAmountOfToken({
@@ -105,10 +105,10 @@ export async function getAmountInByAmountOutQuotation({
   });
   if (
     quoteResult.quoteStatus == "error" &&
-    quoteResult.messageOriginal?.includes("low")
+    quoteResult.message?.includes("low")
   ) {
     // quote again
-    const leastAmount = quoteResult.messageOriginal.split(" ").pop();
+    const leastAmount = quoteResult.message.split(" ").pop();
     const quoteResultAgain = await intentsQuotationUi({
       symbol,
       chain,

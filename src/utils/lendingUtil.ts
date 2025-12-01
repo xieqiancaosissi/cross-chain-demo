@@ -5,7 +5,7 @@ import { isEmpty } from "lodash";
 import { shrinkToken } from "@/utils/numbers";
 import type { AssetsState } from "@/redux/state/assetState";
 import type { Asset } from "rhea-cross-chain-sdk";
-import type { Assets, IAssetFarmReward } from "rhea-cross-chain-sdk";
+import type { Assets, IAssetFarmReward, IAssetsView } from "rhea-cross-chain-sdk";
 import type { AccountState } from "@/redux/state/accountState";
 import type { AppState } from "@/redux/slice/appSlice";
 import { UIAsset, IPortfolioReward } from "@/interface/lending";
@@ -31,7 +31,7 @@ export const toUsd = (balance: string, asset: Asset) =>
           (asset?.metadata?.decimals || 0) +
             (asset?.config?.extra_decimals || 0)
         )
-      ) * asset.price.usd
+      ) * +(asset.price.usd || 0)
     : 0;
 
 export const emptySuppliedAsset = (asset: {
@@ -69,7 +69,7 @@ export const hasZeroSharesFarmRewards = (farms): boolean => {
 export const transformAsset = (
   asset: Asset,
   account: AccountState,
-  assets: Assets,
+  assets: IAssetsView,
   app: AppState
 ): UIAsset => {
   const tokenId = asset.token_id;
@@ -219,7 +219,7 @@ export const transformAsset = (
 export const getRewards = (
   action: "supplied" | "borrowed" | "tokennetbalance",
   asset: Asset,
-  assets: Assets
+  assets: IAssetsView
 ) => {
   return Object.entries(asset.farms[action] || {}).map(
     ([tokenId, rewards]) => ({

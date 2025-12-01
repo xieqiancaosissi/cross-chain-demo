@@ -6,7 +6,7 @@ import { shrinkToken } from "@/utils/numbers";
 import { MAX_RATIO } from "@/services/constantConfig";
 import { RootState } from "@/redux/store";
 import { getAdjustedSum } from "@/redux/selectors/getWithdrawMaxAmount";
-import { Portfolio } from "@/redux/state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk";
 import { AssetsState } from "@/redux/state/assetState";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { expandTokenDecimal } from "@/utils/numbers";

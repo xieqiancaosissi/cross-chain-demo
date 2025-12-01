@@ -135,7 +135,7 @@ export const getGainsFromIncentive = (
           totalBoostedShares > 0
             ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
             : 0;
-        return dailyAmount * (rewardAsset.price?.usd || 0);
+        return dailyAmount * Number(rewardAsset.price?.usd || 0);
       })
       .reduce((sum, p) => sum + p, 0);
   } else {
@@ -168,7 +168,7 @@ export const getGainsFromIncentive = (
               totalBoostedShares > 0
                 ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
                 : 0;
-            return dailyAmount * (rewardAsset.price?.usd || 0);
+            return dailyAmount * Number(rewardAsset.price?.usd || 0);
           })
           .reduce((sum, p) => sum + p, 0);
       })
@@ -280,10 +280,7 @@ export const computePoolsDailyAmount = (
   boost_suppress_factor: number
 ) => {
   // const position = asset.token_id.indexOf(lpTokenPrefix) > -1 ? asset.token_id : DEFAULT_POSITION;
-  const boosterLogBase_ =
-    Object.keys(farmData?.asset_farm_reward?.booster_log_bases || {}).length > 0
-      ? farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID]
-      : farmData?.asset_farm_reward?.booster_log_base;
+  const boosterLogBase_ = farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID];
   const boosterLogBase = Number(shrinkToken(boosterLogBase_, boosterDecimals));
   const assetDecimals =
     asset?.metadata?.decimals + asset?.config?.extra_decimals;
@@ -392,10 +389,7 @@ export const computeNetLiquidityDailyAmount = (
   xBRRR: number,
   boost_suppress_factor: number
 ) => {
-  const boosterLogBase_ =
-    Object.keys(farmData?.asset_farm_reward?.booster_log_bases || {}).length > 0
-      ? farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID]
-      : farmData?.asset_farm_reward?.booster_log_base;
+  const boosterLogBase_ = farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID]
   const boosterLogBase = Number(shrinkToken(boosterLogBase_, boosterDecimals));
 
   const assetDecimals = asset.metadata.decimals + asset.config.extra_decimals;
@@ -509,7 +503,7 @@ export const getAccountRewards = createSelector(
             multiplier,
             price: rewardAsset?.price?.usd || 0,
             unclaimedAmountUSD:
-              unclaimedAmount * (rewardAsset?.price?.usd || 0),
+              unclaimedAmount * Number(rewardAsset?.price?.usd || 0),
             remaining_rewards:
               farmData?.asset_farm_reward?.remaining_rewards || "0",
           };
@@ -548,7 +542,7 @@ export const getAccountRewards = createSelector(
         newDailyAmount,
         multiplier,
         price: rewardAsset?.price?.usd || 0,
-        unclaimedAmountUSD: unclaimedAmount * (rewardAsset?.price?.usd || 0),
+        unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset?.price?.usd || 0),
         remaining_rewards:
           farmData?.asset_farm_reward?.remaining_rewards || "0",
       };
@@ -659,7 +653,7 @@ export const getAccountRewardsForApy = createSelector(
             newDailyAmount,
             multiplier,
             price: rewardAsset.price?.usd || 0,
-            unclaimedAmountUSD: unclaimedAmount * (rewardAsset.price?.usd || 0),
+            unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset.price?.usd || 0),
             assetTokenId: tokenId,
           };
         });
@@ -699,7 +693,7 @@ export const getAccountRewardsForApy = createSelector(
         newDailyAmount,
         multiplier,
         price: rewardAsset.price?.usd || 0,
-        unclaimedAmountUSD: unclaimedAmount * (rewardAsset.price?.usd || 0),
+        unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset.price?.usd || 0),
       };
     };
 

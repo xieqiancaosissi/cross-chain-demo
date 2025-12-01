@@ -7,7 +7,8 @@ import { IAssetsView } from "rhea-cross-chain-sdk";
 import { getAdjustedSum } from "./getWithdrawMaxAmount";
 import { DEFAULT_POSITION, MAX_RATIO } from "@/services/constantConfig";
 import { UIAsset } from "@/interface/lending";
-import { Portfolio, AccountState } from "@/redux/state/accountState";
+import { AccountState } from "@/redux/state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk"
 
 export const computeBorrowMaxAmount = (
   tokenId: string,

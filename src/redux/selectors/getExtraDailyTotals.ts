@@ -21,7 +21,7 @@ export const getExtraDailyTotals = ({
         const daily = isStaking
           ? poolRewards[tokenId].newDailyAmount
           : poolRewards[tokenId].dailyAmount;
-        return acc + daily * price;
+        return acc + daily * Number(price || 0);
       }, 0);
 
       return gainExtra;

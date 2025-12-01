@@ -6,7 +6,7 @@ import { MAX_RATIO, DEFAULT_POSITION } from "@/services/constantConfig";
 import { RootState } from "../store";
 import { hasAssets } from "@/utils/lendingUtil";
 import { getAdjustedSum } from "./getWithdrawMaxAmount";
-import { Portfolio } from "../state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk";
 
 export const recomputeHealthFactorAdjust = (
   tokenId: string,

@@ -1,4 +1,4 @@
-import { Portfolio } from "@/redux/state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk";
 import { IMetadata, IChain, IIntentItem } from "rhea-cross-chain-sdk";
 export interface IBindData {
   signerWallet: {

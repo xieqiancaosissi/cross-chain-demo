@@ -6,7 +6,7 @@ import { shrinkToken, expandTokenDecimal } from "@/utils/numbers";
 import { MAX_RATIO, DEFAULT_POSITION } from "@/services/constantConfig";
 import { decimalMax, decimalMin } from "@/utils/lendingUtil";
 import { IAssetsView } from "rhea-cross-chain-sdk";
-import { Portfolio } from "../state/accountState";
+import { Portfolio } from "rhea-cross-chain-sdk";
 
 const sumReducerDecimal = (sum: Decimal, cur: Decimal) => sum.add(cur);
 
@@ -80,7 +80,7 @@ export const getAdjustedSum = (
 
 export const computeWithdrawMaxAmount = (
   tokenId: string,
-  assets: Assets,
+  assets: IAssetsView,
   portfolio: Portfolio
 ) => {
   const asset = assets[tokenId];

@@ -1,4 +1,5 @@
 import React from "react";
+import Decimal from "decimal.js";
 import { useAppSelector } from "@/hooks/lending/useRedux";
 import { getTotalAccountBalance } from "@/redux/selectors/getTotalAccountBalance";
 import { useUserHealth } from "@/hooks/lending/useUserHealth";
@@ -24,15 +25,10 @@ const getTotalCollateral = createSelector(
       const assetData = assets.data[token_id];
       if (!assetData) return 0;
       const { price, metadata, config } = assetData;
-
-      const tokenUsd =
-        Number(
-          shrinkToken(
-            d?.balance || 0,
-            metadata.decimals + config.extra_decimals
-          )
-        ) * (price?.usd || 0);
-
+      const tokenUsd = new Decimal(shrinkToken(
+        d?.balance || 0,
+        metadata.decimals + config.extra_decimals
+      )).mul(price?.usd || 0).toNumber();
       return tokenUsd;
     });
 

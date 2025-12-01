@@ -41,7 +41,7 @@ export const getAverageBorrowedRewardApy = createSelector(
               totalBoostedShares > 0
                 ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
                 : 0;
-            return dailyAmount * (rewardAsset.price?.usd || 0);
+            return dailyAmount * Number(rewardAsset.price?.usd || 0);
           })
           .reduce((acc, value) => acc + value, 0);
         const balanceDecimal = borrows
@@ -52,7 +52,7 @@ export const getAverageBorrowedRewardApy = createSelector(
         );
         return {
           dailyProfit: profit,
-          principal: balance * (asset.price?.usd || 0),
+          principal: balance * Number(asset.price?.usd || 0),
         };
       })
       .reduce(

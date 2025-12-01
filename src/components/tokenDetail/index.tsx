@@ -136,7 +136,8 @@ function TokenDetailView({
   const [borrowers_number, set_borrowers_number] = useState<number>();
   const isMobile = isMobileDevice();
   const router = useRouter();
-  const { NATIVE_TOKENS, NEW_TOKENS } = config_near;
+  const NATIVE_TOKENS = [];
+  const NEW_TOKENS = []
   const [depositAPY] = useAPY({
     baseAPY: tokenRow.supplyApy,
     rewards: tokenRow.depositRewards,

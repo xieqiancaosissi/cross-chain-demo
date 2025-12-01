@@ -72,18 +72,18 @@ export function useExtraAPY({
         portfolio.positions?.[position]?.borrowed?.[assetId]?.balance || 0,
         assetDecimals
       )
-    ) * assetPrice;
+    ) * +(assetPrice || 0);
   const totalSupplyAssetUSD =
     Number(
       shrinkToken(portfolio.supplied[assetId]?.balance || 0, assetDecimals)
-    ) * assetPrice;
+    ) * +(assetPrice || 0);
   const totalCollateralAssetUSD =
     Number(
       shrinkToken(
         portfolio.positions?.[position]?.collateral?.[assetId]?.balance || 0,
         assetDecimals
       )
-    ) * assetPrice;
+    ) * +(assetPrice || 0);
 
   const totalUserAssetUSD = isBorrow
     ? totalBorrowAssetUSD
@@ -242,7 +242,7 @@ export function useExtraAPY({
     const rewardAssetPrice = assets.data[rewardTokenId].price?.usd || 0;
 
     const apy =
-      ((newDailyAmount * 365 * rewardAssetPrice) / totalUserAssetUSD) * 100;
+      ((newDailyAmount * 365 * +(rewardAssetPrice || 0)) / totalUserAssetUSD) * 100;
 
     return apy;
   };

@@ -103,7 +103,7 @@ export const useTokenDetails = () => {
       let interestRate: any = {};
       let currentUtilization: number | null;
       if (tokenDetailsRes.status !== "rejected") {
-        tokenDetails = tokenDetailsRes?.value;
+        tokenDetails = tokenDetailsRes?.value as any[];
       }
       if (interestRateRes.status !== "rejected") {
         interestRate = interestRateRes?.value;

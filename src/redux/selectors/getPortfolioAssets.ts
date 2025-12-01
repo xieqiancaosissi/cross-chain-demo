@@ -106,7 +106,7 @@ export const getPortfolioAssets = createSelector(
               asset.metadata.decimals + asset.config.extra_decimals
             )
           );
-        const suppliedUSD = (asset.price?.usd || 0) * suppliedToken;
+        const suppliedUSD = Number(asset.price?.usd || 0) * suppliedToken;
         totalSuppliedUSD += suppliedUSD;
         const supplyDailyAmount = new Decimal(suppliedToken)
           .mul(asset.supply_apr || 0)
@@ -170,7 +170,7 @@ export const getPortfolioAssets = createSelector(
             asset.metadata.decimals + asset.config.extra_decimals
           )
         );
-        const borrowedUSD = borrowedToken * (asset.price?.usd || 0);
+        const borrowedUSD = borrowedToken * Number(asset.price?.usd || 0);
         totalBorrowedUSD += borrowedUSD;
         return standardizeAsset({
           tokenId,

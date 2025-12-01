@@ -42,7 +42,7 @@ export const getAverageNetRewardApy = createSelector(
           totalBoostedShares > 0
             ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
             : 0;
-        return dailyAmount * (rewardAsset.price?.usd || 0);
+        return dailyAmount * +(rewardAsset.price?.usd || 0);
       })
       .reduce((acc, usd) => acc + usd, 0);
     const netLiquidity = totalCollateral + totalSupplied - totalBorrowed;

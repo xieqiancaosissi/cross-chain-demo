@@ -47,7 +47,7 @@ export const getListTokenNetRewardApy = (memeCategory?: boolean) =>
                 totalBoostedShares > 0
                   ? (boostedShares / totalBoostedShares) * totalRewardsPerDay
                   : 0;
-              return dailyAmount * (rewardAsset.price?.usd || 0) * 365;
+              return dailyAmount * Number(rewardAsset.price?.usd || 0) * 365;
             })
             .reduce((acc, value) => acc + value, 0);
           const principal =
