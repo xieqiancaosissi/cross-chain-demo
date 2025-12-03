@@ -64,6 +64,7 @@ import {
 } from "@/utils/lendingBusinessUtil";
 import { TOKEN_STORAGE_DEPOSIT_READ } from "@/services/constantConfig";
 import { getSlippageToleranceByAmountInUsd } from "@/utils/chainsUtil";
+import { getChainTokenMetadataBySymbol } from "@/utils/chainsUtil";
 const { WRAP_NEAR_CONTRACT_ID } = config_near;
 export default function Modal() {
   const [intentsFeeUsd, setIntentsFeeUsd] = useState<string | number>("0");
@@ -406,9 +407,15 @@ export default function Modal() {
       slippageTolerance: getSlippageToleranceByAmountInUsd(borrowedUsd),
     });
     setMaxRepayAmountFromWalletLoading(false);
+    const tokenOnChainMetadata = getChainTokenMetadataBySymbol({
+      symbol,
+      chain,
+      subChain,
+    });
+    const chainDecimal = tokenOnChainMetadata?.decimal || asset.decimals || 0;
     setMaxRepayAmountFromWallet({
       amountToken: amountInToken,
-      amountTokenRead: shrinkToken(amountInToken || 0, asset.decimals || 0),
+      amountTokenRead: shrinkToken(amountInToken || 0, chainDecimal),
     });
   }
   /** query repay amount end */
