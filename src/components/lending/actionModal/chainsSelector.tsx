@@ -341,7 +341,7 @@ function ChainTemplate({
                       }}
                     >
                       <div className="flex items-center gap-4">
-                        <Img path={item.icon} />
+                        <Img path={item.icon} className="w-[26px] h-[26px]" />
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-b-10">
                             {item.label}

@@ -181,7 +181,6 @@ function searchMatchAssetId({
   const _suppliesUsd = portfolio.supplies?.map((item) => {
     const { token_id, balance } = item;
     const _asset = assets.data[token_id];
-    console.log("--------------------------------_asset", _asset, token_id);
     const _price = _asset.price?.usd || 0;
     const _amount = shrinkToken(
       balance,
