@@ -38,7 +38,6 @@ export const useFetchData = () => {
       dispatch(
         fetchAccount({
           account_all_positions: main_batch_views.account_all_positions,
-          assets_paged_detailed: main_batch_views.assets_paged_detailed,
           account_id: accountId,
         })
       );

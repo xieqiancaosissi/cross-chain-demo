@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { MAX_RATIO, DEFAULT_POSITION } from "@/services/constantConfig";
 import { RootState } from "../store";
 import { hasAssets } from "@/utils/lendingUtil";
-import { getAdjustedSum } from "./getWithdrawMaxAmount";
+import { getAdjustedSum } from "@rhea-finance/cross-chain-sdk";
 
 export const LOW_HEALTH_FACTOR = 180;
 export const DANGER_HEALTH_FACTOR = 100;
@@ -41,19 +41,16 @@ export const getLPHealthFactor = createSelector(
 );
 
 const calHealthFactor = (portfolio: any, assets: any, positionId?: string) => {
-  const adjustedCollateralSum = getAdjustedSum(
-    "collateral",
+  const adjustedCollateralSum = getAdjustedSum({
+    type: "collateral",
     portfolio,
-    assets.data,
-    positionId
-  );
-  const adjustedBorrowedSum = getAdjustedSum(
-    "borrowed",
+    assets: assets.data,
+  });
+  const adjustedBorrowedSum = getAdjustedSum({
+    type: "borrowed",
     portfolio,
-    assets.data,
-    positionId
-  );
-
+    assets: assets.data,
+  });
   // If no collateral or no borrowed amount, return appropriate value
   if (adjustedCollateralSum.isZero() && adjustedBorrowedSum.isZero()) {
     return -1; // No position

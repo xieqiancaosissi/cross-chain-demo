@@ -64,13 +64,6 @@ export interface IAccountAssetsMap {
     }>;
   };
 }
-export interface IGasData {
-  portfolioMinusGas: Portfolio;
-  tokenId: string;
-  amount: string | number;
-  amountToken: string | number;
-  amountBurrow: string | number;
-}
 export interface ICreateFeeToken {
   tokenId: string;
   totalFeeAmout: string;

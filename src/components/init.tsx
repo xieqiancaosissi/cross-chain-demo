@@ -10,11 +10,12 @@ import {
   getCreateMcaFeePaged,
   getNearValuesPaged,
   getMultichainLendingConfig,
+  setCustomNodeUrl,
 } from "@rhea-finance/cross-chain-sdk";
 import { ASSETS_CHAINS_NEAR } from "@/services/chainConfig";
 
 const mobile = isMobile();
-
+setCustomNodeUrl("https://nearinner.deltarpc.com");
 export default function Init() {
   const isIdle = useIdle(IDLE_INTERVAL);
   const { fetchData } = useFetchData();

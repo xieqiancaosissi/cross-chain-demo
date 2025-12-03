@@ -17,21 +17,12 @@ import {
 } from "@/redux/selectors/accountSelectors";
 import { getAssets } from "@/redux/selectors/assetsSelectors";
 import { useDegenMode } from "@/hooks/lending/hooks";
-import { getBorrowMaxAmount } from "@/redux/selectors/getBorrowMaxAmount";
-import { recomputeHealthFactor } from "@/redux/selectors/recomputeHealthFactor";
-import { recomputeHealthFactorAdjust } from "@/redux/selectors/recomputeHealthFactorAdjust";
-import { recomputeHealthFactorWithdraw } from "@/redux/selectors/recomputeHealthFactorWithdraw";
-import { recomputeHealthFactorSupply } from "@/redux/selectors/recomputeHealthFactorSupply";
-import { recomputeHealthFactorRepay } from "@/redux/selectors/recomputeHealthFactorRepay";
-import { recomputeHealthFactorRepayFromDeposits } from "@/redux/selectors/recomputeHealthFactorRepayFromDeposits";
-import { getWithdrawMaxAmount } from "@/redux/selectors/getWithdrawMaxAmount";
 import { getRepayPositions } from "@/redux/selectors/getRepayPositions";
 import { useChainAccountInstantStore } from "@/stores/chainAccount";
 import { fetchTokenBalances } from "@/redux/slice/accountSlice";
 import { formatSymbolName } from "@/utils/chainsUtil";
 import { getModalData } from "./utils";
 import { hideModal } from "@/redux/slice/appSlice";
-import { computeRelayerGas } from "@/redux/selectors/computeRelayerGas";
 import Action from "./Action";
 import ChainsSelector from "./chainsSelector";
 import { ASSETS_CHAINS_SUPPORT_UI } from "@/services/chainConfig";
@@ -49,7 +40,19 @@ import {
   SetUpFeeSelector,
 } from "./components";
 import Controls from "./Controls";
-import { view_on_near, config_near } from "@rhea-finance/cross-chain-sdk";
+import {
+  view_on_near,
+  config_near,
+  computeRelayerGas,
+  recomputeHealthFactorBorrow,
+  recomputeHealthFactorRepay,
+  recomputeHealthFactorRepayFromDeposits,
+  recomputeHealthFactorSupply,
+  recomputeHealthFactorWithdraw,
+  recomputeHealthFactorAdjust,
+  getWithdrawMaxAmount,
+  getBorrowMaxAmount,
+} from "@rhea-finance/cross-chain-sdk";
 import { useChainAccountStore } from "@/stores/chainAccount";
 import useChainsLendingStatus, {
   useSelectedChainStatus,
@@ -93,7 +96,7 @@ export default function Modal() {
   const accountId = useAppSelector(getAccountId);
   const asset = useAppSelector(getAssetData);
   const assets = useAppSelector(getAssets);
-  const { amount, isMax } = useAppSelector(getSelectedValues);
+  const { amount, isMax, useAsCollateral } = useAppSelector(getSelectedValues);
   const { isRepayFromDeposits } = useDegenMode();
   const chainAccountInstantStore = useChainAccountInstantStore();
   const actionChainSeleced = chainAccountInstantStore.getActionChainSeleced();
@@ -112,6 +115,8 @@ export default function Modal() {
     );
     return !!target;
   }, [ASSETS_CHAINS_SUPPORT_UI, symbol]);
+  const repayPositions = useAppSelector(getRepayPositions(tokenId));
+  const portfolio_origin = useAppSelector(getAccountPortfolio);
 
   /** near gas start */
   const requireBridgeAction =
@@ -144,14 +149,13 @@ export default function Modal() {
     tokenRegisterQueryLoading,
     mca,
   ]);
-
-  const gasData = useAppSelector(
-    computeRelayerGas({
-      nearStorageAmount,
-      mca,
-      relayerGasFees,
-    })
-  );
+  const gasData = computeRelayerGas({
+    nearStorageAmount,
+    mca,
+    relayerGasFees,
+    assets: assets.data,
+    portfolio: portfolio_origin,
+  });
   /** near gas end */
 
   // get fee and receive amount
@@ -191,49 +195,60 @@ export default function Modal() {
       near_price,
     ]);
   const { healthFactor, maxBorrowValue: adjustedMaxBorrowValue } =
-    useAppSelector(
-      action === "Withdraw"
-        ? recomputeHealthFactorWithdraw(
-            tokenId,
-            +amount,
-            gasData?.portfolioMinusGas
-          )
-        : action === "Adjust"
-        ? recomputeHealthFactorAdjust(
-            tokenId,
-            +amount,
-            gasData?.portfolioMinusGas
-          )
-        : action === "Supply"
-        ? recomputeHealthFactorSupply(tokenId, +receiveAmount)
-        : action === "Repay" && isRepayFromDeposits
-        ? recomputeHealthFactorRepayFromDeposits(
-            tokenId,
-            +amount,
-            selectedCollateralType,
-            gasData?.portfolioMinusGas
-          )
-        : action === "Repay" && !isRepayFromDeposits
-        ? recomputeHealthFactorRepay(
-            tokenId,
-            +receiveAmount,
-            selectedCollateralType
-          )
-        : recomputeHealthFactor(
-            tokenId,
-            +amount,
-            selectedCollateralType,
-            gasData?.portfolioMinusGas
-          )
-    );
-  const maxBorrowAmountPositions = useAppSelector(
-    getBorrowMaxAmount(tokenId, gasData?.portfolioMinusGas)
-  );
-  const maxWithdrawAmount = useAppSelector(
-    getWithdrawMaxAmount(tokenId, gasData?.portfolioMinusGas)
-  );
-  const repayPositions = useAppSelector(getRepayPositions(tokenId));
-  const portfolio_origin = useAppSelector(getAccountPortfolio);
+    action === "Withdraw"
+      ? recomputeHealthFactorWithdraw({
+          tokenId,
+          amount: +amount,
+          portfolio: gasData?.portfolioMinusGas,
+          assets: assets.data,
+        })
+      : action === "Adjust"
+      ? recomputeHealthFactorAdjust({
+          tokenId,
+          amount: +amount,
+          portfolio: gasData?.portfolioMinusGas,
+          assets: assets.data,
+        })
+      : action === "Supply"
+      ? recomputeHealthFactorSupply({
+          tokenId,
+          amount: +receiveAmount,
+          portfolio: portfolio_origin,
+          assets: assets.data,
+          useAsCollateral,
+        })
+      : action === "Repay" && isRepayFromDeposits
+      ? recomputeHealthFactorRepayFromDeposits({
+          tokenId,
+          amount: +amount,
+          portfolio: gasData?.portfolioMinusGas,
+          assets: assets.data,
+        })
+      : action === "Repay" && !isRepayFromDeposits
+      ? recomputeHealthFactorRepay({
+          tokenId,
+          amount: +receiveAmount,
+          portfolio: portfolio_origin,
+          assets: assets.data,
+        })
+      : recomputeHealthFactorBorrow({
+          tokenId,
+          amount: +amount,
+          portfolio: gasData?.portfolioMinusGas,
+          assets: assets.data,
+        });
+  const maxBorrowAmountPositions = getBorrowMaxAmount({
+    tokenId,
+    portfolio: gasData?.portfolioMinusGas,
+    assets: assets.data,
+  });
+  const maxWithdrawAmount = !["Withdraw", "Adjust", "Repay"].includes(action)
+    ? "0"
+    : getWithdrawMaxAmount({
+        tokenId,
+        assets: assets.data,
+        portfolio: gasData?.portfolioMinusGas,
+      });
   const portfolio = gasData?.portfolioMinusGas || portfolio_origin;
   const activePosition = DEFAULT_POSITION;
   const { maxBorrowAmount = 0, maxBorrowValue = 0 } =

@@ -3,50 +3,31 @@ import { initialState } from "../state/accountState";
 import {
   getAccountBalance,
   IAccountAllPositionsDetailed,
-  IAssetDetailed,
   getBalance,
-  config_near,
   transformPortfolio,
 } from "@rhea-finance/cross-chain-sdk";
 
-const transformAccount = (account) => {
-  if (!account) return undefined;
-
-  const { accountId } = account;
-
-  return {
-    accountId,
-    portfolio: transformPortfolio(account),
-  };
+const transformAccount = (
+  account_all_positions: IAccountAllPositionsDetailed
+) => {
+  return transformPortfolio(account_all_positions);
 };
 
 export const fetchAccount = createAsyncThunk(
   "account/fetchAccount",
   async ({
     account_all_positions,
-    assets_paged_detailed,
     account_id,
   }: {
     account_all_positions?: IAccountAllPositionsDetailed;
-    assets_paged_detailed?: IAssetDetailed[];
     account_id: string;
   }) => {
     if (account_id) {
-      const hiddenAssets = config_near.hiddenAssets || [];
-      const _availableAssets = assets_paged_detailed.filter(
-        (asset) => !hiddenAssets.includes(asset.token_id)
-      );
-      const tokenIds = _availableAssets.reduce((acc: string[], asset) => {
-        const token_id: string = asset.token_id;
-        acc.push(token_id);
-        return acc;
-      }, []);
-      const account = transformAccount({
+      const portfolio = transformAccount(account_all_positions);
+      return {
         accountId: account_id,
-        portfolio: account_all_positions,
-        tokenIds,
-      });
-      return account;
+        portfolio,
+      };
     }
     return undefined;
   }

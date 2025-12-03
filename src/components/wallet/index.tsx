@@ -700,7 +700,7 @@ function ChainTemplate({
               className="flex items-center justify-between h-[66px] border-t border-gray-30 cursor-pointer w-full pl-7"
             >
               <div className="flex items-center gap-4">
-                <Img path={item.icon} />
+                <Img path={item.icon} className="w-[26px] h-[26px]" />
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-b-10">{item.label}</span>
                   {CHAINS_FASTER.includes(item?.label?.toLowerCase()) ? (

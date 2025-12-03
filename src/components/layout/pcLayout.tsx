@@ -4,10 +4,6 @@ import NonFarmedAssets from "./NonFarmedAssets";
 import { useAppStore } from "@/stores/app";
 import dynamic from "next/dynamic";
 
-const RPCList = dynamic(() => import("@/components/rpc/index"), {
-  ssr: false,
-});
-
 export default function DefaultLayout({
   children,
 }: {
@@ -37,7 +33,6 @@ export default function DefaultLayout({
             >
               {children}
             </div>
-            <RPCList />
           </div>
         </div>
       </div>

@@ -5,7 +5,6 @@ import { toggleUseAsCollateral, hideModal } from "@/redux/slice/appSlice";
 import { repay } from "@/services/lending/actions/repay";
 import { repayFromDeposits } from "@/services/lending/actions/repayFromDeposits";
 import { supply } from "@/services/lending/actions/supply";
-import { computeWithdrawMaxAmount } from "@/redux/selectors/getWithdrawMaxAmount";
 import { borrow } from "@/services/lending/actions/borrow";
 import { withdraw } from "@/services/lending/actions/withdraw";
 import { adjustCollateral } from "@/services/lending/actions/adjustCollateral";
@@ -31,11 +30,12 @@ import { decimalMax, decimalMin } from "@/utils/lendingUtil";
 import { useConfig } from "@/hooks/lending/hooks";
 import {
   pollingTransactionStatus,
-  IStatus,
   config_near,
   format_wallet,
   postMultichainLendingReport,
+  computeWithdrawMaxAmount,
 } from "@rhea-finance/cross-chain-sdk";
+import type { IGasData, IStatus } from "@rhea-finance/cross-chain-sdk";
 import { useUpdateTokenChainBalance } from "@/hooks/useChainsLendingBalance";
 import useChainsLendingStatus, {
   useSelectedChainStatus,
@@ -49,7 +49,6 @@ import {
 import { Alert } from "./utils";
 import { Alerts } from "./components";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { IGasData } from "@/interface/lending/chains";
 import useRelayerConfigGasFee from "@/hooks/useRelayerGasFee";
 import { useSelectedChainAccountId } from "@/hooks/useChainsLendingStatus";
 import { getDebtAmountOfToken } from "@/utils/lendingBusinessUtil";
@@ -130,14 +129,7 @@ export default function Action({
     0
   ).toNumber();
   // simple withdraw data
-  const simpleWithdrawData = gasData
-    ? {
-        tokenId: gasData.tokenId,
-        amount: gasData.amount,
-        amountToken: gasData.amountToken,
-        amountBurrow: gasData.amountBurrow,
-      }
-    : null;
+  const simpleWithdrawData = gasData ? gasData.simpleWithdrawData : null;
   // expand amount token decimals on near
   const expandedAmount = new Decimal(
     expandTokenDecimal(amount || 0, decimals || 0).toFixed(
@@ -496,11 +488,11 @@ export default function Action({
       portfolio?.supplied[tokenId]?.balance || 0
     );
     const hasBorrow = portfolio?.borrows?.length > 0;
-    const { maxAmount, canWithdrawAll } = computeWithdrawMaxAmount(
+    const { maxAmount, canWithdrawAll } = computeWithdrawMaxAmount({
       tokenId,
-      assets.data,
-      portfolio
-    );
+      assets: assets.data,
+      portfolio,
+    });
     const _expandedAmount = isMax
       ? decimalMin(
           maxAmount,

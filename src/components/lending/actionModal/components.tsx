@@ -113,8 +113,8 @@ export const BorrowLimit = ({
   from,
   to,
 }: {
-  from: string | number;
-  to: string | number;
+  from: string | number | Decimal;
+  to: string | number | Decimal;
 }) => {
   return (
     <div className="flex items-center justify-between">
