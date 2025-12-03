@@ -10,7 +10,7 @@ import {
   postMultichainLendingRequests,
   pollingRelayerTransactionResult,
   prepareBusinessDataOnBorrow,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message } from "@/utils/chainsUtil";
 import { formatErrorMessage } from "@/utils/chainsUtil";
 import { TOKEN_STORAGE_DEPOSIT_READ } from "@/services/constantConfig";

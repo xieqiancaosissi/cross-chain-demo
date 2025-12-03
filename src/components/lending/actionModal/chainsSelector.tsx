@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Icon } from "@iconify/react";
 import { TokenAction } from "@/redux/slice/appSlice";
 import { EVM_CHAINS, ALL_CHAINS } from "@/services/chainConfig";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import { Img } from "@/components/common/img";
 import useWalletConnect from "@/hooks/useWalletConnect";
 import {

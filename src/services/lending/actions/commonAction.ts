@@ -9,7 +9,7 @@ import {
   getRepayCustomRecipientMsg,
   intentsQuotation,
   serializationObj,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { TokenAction } from "@/redux/slice/appSlice";
 import {
   INTENTS_TOKENS,

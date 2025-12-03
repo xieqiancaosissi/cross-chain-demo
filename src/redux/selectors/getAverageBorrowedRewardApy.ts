@@ -3,7 +3,7 @@ import Decimal from "decimal.js";
 import { RootState } from "../store";
 import { shrinkToken } from "@/utils/numbers";
 import { filterAccountSentOutFarms } from "@/utils/lendingUtil";
-import { Farm } from "rhea-cross-chain-sdk";
+import { Farm } from "@rhea-finance/cross-chain-sdk";
 
 export const getAverageBorrowedRewardApy = createSelector(
   (state: RootState) => state.assets,

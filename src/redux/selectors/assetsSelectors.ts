@@ -6,7 +6,7 @@ import {
   ASSETS_CHAINS_EVM,
   ASSETS_CHAINS_SOLANA,
 } from "@/services/chainConfig";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 
 export const getAvailableAssets = ({
   source,

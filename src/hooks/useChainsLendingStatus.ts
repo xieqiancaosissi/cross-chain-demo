@@ -7,7 +7,7 @@ import {
 } from "@/stores/chainAccount";
 import { getAccountIdUi } from "@/utils/chainsUtil";
 import useWalletConnect from "./useWalletConnect";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import { formatSymbolName } from "@/utils/chainsUtil";
 
 interface IChainStatus {

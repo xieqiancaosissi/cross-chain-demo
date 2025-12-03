@@ -129,7 +129,9 @@ export function useStakeRewardApy() {
   // supply
   const totalSupplyProfit = suppliedRewards.reduce((sum, cur) => {
     const { tokenId, newDailyAmount } = cur;
-    return sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount);
+    return (
+      sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount)
+    );
   }, 0);
   const totalSupplyPrincipal = Object.entries(supplyFarms)
     .map(([tokenId]) => {
@@ -151,7 +153,9 @@ export function useStakeRewardApy() {
   // borrow
   const totalBorrowProfit = borrowedRewards.reduce((sum, cur) => {
     const { tokenId, newDailyAmount } = cur;
-    return sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount);
+    return (
+      sum + Number((+assets.data[tokenId].price?.usd || 0) * newDailyAmount)
+    );
   }, 0);
   const totalBorrowedPrincipal = Object.entries(borrowFarms)
     .map(([tokenId]) => {

@@ -1,5 +1,5 @@
 import { ITokenMetadata } from "@/interface/lending";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 import { staticDomain } from "@/services/constantConfig";
 const { WRAP_NEAR_CONTRACT_ID } = config_near;
 

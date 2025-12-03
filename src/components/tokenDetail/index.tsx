@@ -35,7 +35,7 @@ import {
 import { isMobileDevice } from "@/utils/common";
 import { OuterLinkConfig } from "./config";
 import { DEFAULT_POSITION, lpTokenPrefix } from "@/services/constantConfig";
-import { config_near, get_token_detail } from "rhea-cross-chain-sdk";
+import { config_near, get_token_detail } from "@rhea-finance/cross-chain-sdk";
 import { useTokenDetails } from "@/hooks/lending/useTokenDetails";
 import { useAppDispatch } from "@/hooks/lending/useRedux";
 import {
@@ -137,7 +137,7 @@ function TokenDetailView({
   const isMobile = isMobileDevice();
   const router = useRouter();
   const NATIVE_TOKENS = [];
-  const NEW_TOKENS = []
+  const NEW_TOKENS = [];
   const [depositAPY] = useAPY({
     baseAPY: tokenRow.supplyApy,
     rewards: tokenRow.depositRewards,

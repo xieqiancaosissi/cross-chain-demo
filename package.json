@@ -51,7 +51,7 @@
     "recharts": "^3.2.1",
     "redux": "5.0.1",
     "redux-persist": "6.0.0",
-    "rhea-cross-chain-sdk": "^0.1.0",
+    "@rhea-finance/cross-chain-sdk": "0.1.1",
     "zustand": "4.5.7"
   },
   "devDependencies": {

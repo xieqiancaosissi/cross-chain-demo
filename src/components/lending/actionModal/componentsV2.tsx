@@ -1,7 +1,7 @@
 import { DefaultToolTip } from "@/components/common/toolTip";
 import { QuestionIcon } from "@/components/common/Icons";
 import useChainsLendingStatus from "@/hooks/useChainsLendingStatus";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 
 export function ActiveCom() {
   return (

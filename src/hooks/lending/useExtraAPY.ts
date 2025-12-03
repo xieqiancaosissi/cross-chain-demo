@@ -242,7 +242,8 @@ export function useExtraAPY({
     const rewardAssetPrice = assets.data[rewardTokenId].price?.usd || 0;
 
     const apy =
-      ((newDailyAmount * 365 * +(rewardAssetPrice || 0)) / totalUserAssetUSD) * 100;
+      ((newDailyAmount * 365 * +(rewardAssetPrice || 0)) / totalUserAssetUSD) *
+      100;
 
     return apy;
   };

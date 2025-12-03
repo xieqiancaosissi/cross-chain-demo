@@ -16,7 +16,7 @@ import ClaimJoinModal from "@/components/layout/ClaimJoinModal";
 import InnerAccountWithdrawModal from "../modals/InnerAccountWithdrawModal";
 import { useAppSelector } from "@/hooks/lending/useRedux";
 import Decimal from "decimal.js";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 import { shrinkToken } from "@/utils/numbers";
 import { ASSETS_CHAINS_NEAR } from "@/services/chainConfig";
 import { formatSymbolName } from "@/utils/chainsUtil";

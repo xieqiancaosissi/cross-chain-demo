@@ -1,5 +1,5 @@
-import { Portfolio } from "rhea-cross-chain-sdk";
-import { IMetadata, IChain, IIntentItem } from "rhea-cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
+import { IMetadata, IChain, IIntentItem } from "@rhea-finance/cross-chain-sdk";
 export interface IBindData {
   signerWallet: {
     chain: IChain;

@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import Decimal from "decimal.js";
 import { RootState } from "../store";
 import { shrinkToken } from "@/utils/numbers";
-import { Farm } from "rhea-cross-chain-sdk";
+import { Farm } from "@rhea-finance/cross-chain-sdk";
 import {
   filterAccountSentOutFarms,
   standardizeAsset,

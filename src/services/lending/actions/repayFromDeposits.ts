@@ -15,7 +15,7 @@ import {
   postMultichainLendingRequests,
   pollingRelayerTransactionResult,
   prepareBusinessDataOnRepayFromSupplied,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message } from "@/utils/chainsUtil";
 import { formatErrorMessage } from "@/utils/chainsUtil";
 

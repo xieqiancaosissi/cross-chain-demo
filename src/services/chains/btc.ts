@@ -9,7 +9,7 @@ import Decimal from "decimal.js";
 import {
   prepare_sign_message_btc,
   process_signature_btc,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 export async function transfer_btc({
   address,
   amount,

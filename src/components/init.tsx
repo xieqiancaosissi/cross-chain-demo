@@ -10,7 +10,7 @@ import {
   getCreateMcaFeePaged,
   getNearValuesPaged,
   getMultichainLendingConfig,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { ASSETS_CHAINS_NEAR } from "@/services/chainConfig";
 
 const mobile = isMobile();

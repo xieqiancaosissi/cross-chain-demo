@@ -4,8 +4,8 @@ import { intentsQuotationUi } from "@/services/lending/actions/commonAction";
 import { AssetsState } from "@/redux/state/assetState";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { expandToken, shrinkToken, expandTokenDecimal } from "@/utils/numbers";
-import { Portfolio } from "rhea-cross-chain-sdk";
-import { IChain } from "rhea-cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 
 export function getDebtAmountOfToken({
   portfolio,

@@ -8,7 +8,7 @@ import SetUpModal from "./setUpModal";
 import BindModal from "./bindModal";
 import UnbindModal from "./unbindModal";
 import CreateModal from "./createModal";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import {
   IBindData,
   IUnBindData,

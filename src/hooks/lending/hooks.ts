@@ -29,7 +29,7 @@ import {
   getWeightedAssets,
   getWeightedNetLiquidity,
 } from "@/redux/selectors/getAccountRewards";
-import { get_liquidations } from "rhea-cross-chain-sdk";
+import { get_liquidations } from "@rhea-finance/cross-chain-sdk";
 
 export function useLoading() {
   const isLoadingAssets = useAppSelector(isAssetsLoading);

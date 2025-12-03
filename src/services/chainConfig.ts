@@ -23,7 +23,7 @@ export const EVM_CHAINS = [
   {
     label: "Base",
     id: "0x2105",
-    icon: "base-chain-icon.svg",
+    icon: "base-chain-icon-v2.svg",
   },
   {
     label: "BSC",

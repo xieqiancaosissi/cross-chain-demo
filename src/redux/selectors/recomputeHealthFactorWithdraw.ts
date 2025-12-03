@@ -7,7 +7,7 @@ import { RootState } from "../store";
 import { hasAssets } from "@/utils/lendingUtil";
 import { getAdjustedSum } from "./getWithdrawMaxAmount";
 import { decimalMax, decimalMin } from "@/utils/lendingUtil";
-import { Portfolio } from "rhea-cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
 
 export const recomputeHealthFactorWithdraw = (
   tokenId: string,

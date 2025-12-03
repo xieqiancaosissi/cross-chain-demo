@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { useChainAccountStore } from "@/stores/chainAccount";
-import { getMultichainLendingHistory } from "rhea-cross-chain-sdk";
+import { getMultichainLendingHistory } from "@rhea-finance/cross-chain-sdk";
 import { beautifyNumber } from "@/utils/beautifyNumber";
 import { Img } from "@/components/common/img";
 import Pagination from "@/components/common/Pagination";

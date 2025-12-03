@@ -4,7 +4,7 @@ import {
   pollingRelayerTransactionResult,
   format_wallet,
   prepareBusinessDataOnClaim,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message, formatErrorMessage } from "@/utils/chainsUtil";
 export async function claimAll({
   mca,

@@ -7,7 +7,7 @@ import {
   getBalance,
   config_near,
   transformPortfolio,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 
 const transformAccount = (account) => {
   if (!account) return undefined;

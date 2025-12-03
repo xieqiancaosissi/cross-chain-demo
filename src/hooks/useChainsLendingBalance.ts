@@ -16,7 +16,7 @@ import {
   ASSETS_CHAINS_SUPPORT_UI,
   INTENTS_TOKENS,
 } from "@/services/chainConfig";
-import { IChain, IIntentItem } from "rhea-cross-chain-sdk";
+import { IChain, IIntentItem } from "@rhea-finance/cross-chain-sdk";
 import { formatEvmChainName, formatSymbolName } from "@/utils/chainsUtil";
 import { LENDING_BALANCE_INTERVAL } from "@/services/constantConfig";
 

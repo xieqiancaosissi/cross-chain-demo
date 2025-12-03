@@ -11,8 +11,8 @@ import {
   standardizeAsset,
 } from "@/utils/lendingUtil";
 import { shrinkToken, expandToken } from "@/utils/numbers";
-import { Asset, IAssetsView } from "rhea-cross-chain-sdk";
-import { Farm } from "rhea-cross-chain-sdk";
+import { Asset, IAssetsView } from "@rhea-finance/cross-chain-sdk";
+import { Farm } from "@rhea-finance/cross-chain-sdk";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 
 export const getPortfolioRewards = (
@@ -81,77 +81,73 @@ export const getPortfolioAssets = createSelector(
     };
     let totalSuppliedUSD = 0;
     let totalBorrowedUSD = 0;
-    const supplied = Object.keys(portfolioAssets)
-      .map((tokenId) => {
-        const asset = assets.data[tokenId];
-        if (!asset) return null;
-        const { isLpToken } = asset;
-        const collateral = shrinkToken(
-          (isLpToken
-            ? account.portfolio.positions[tokenId]?.collateral?.[tokenId]
-                ?.balance || 0
-            : account.portfolio.collateral?.[tokenId]?.balance) || 0,
-          asset.metadata.decimals + asset.config.extra_decimals
+    const supplied = Object.keys(portfolioAssets).map((tokenId) => {
+      const asset = assets.data[tokenId];
+      if (!asset) return null;
+      const { isLpToken } = asset;
+      const collateral = shrinkToken(
+        (isLpToken
+          ? account.portfolio.positions[tokenId]?.collateral?.[tokenId]
+              ?.balance || 0
+          : account.portfolio.collateral?.[tokenId]?.balance) || 0,
+        asset.metadata.decimals + asset.config.extra_decimals
+      );
+      const suppliedBalance =
+        account.portfolio.supplied?.[tokenId]?.balance || 0;
+      const totalSupplyD = new Decimal(asset.supplied.balance)
+        .plus(new Decimal(asset.reserved))
+        .toFixed();
+      const suppliedToken =
+        Number(collateral) +
+        Number(
+          shrinkToken(
+            suppliedBalance,
+            asset.metadata.decimals + asset.config.extra_decimals
+          )
         );
-        const suppliedBalance =
-          account.portfolio.supplied?.[tokenId]?.balance || 0;
-        const totalSupplyD = new Decimal(asset.supplied.balance)
-          .plus(new Decimal(asset.reserved))
-          .toFixed();
-        const suppliedToken =
-          Number(collateral) +
-          Number(
-            shrinkToken(
-              suppliedBalance,
-              asset.metadata.decimals + asset.config.extra_decimals
-            )
-          );
-        const suppliedUSD = Number(asset.price?.usd || 0) * suppliedToken;
-        totalSuppliedUSD += suppliedUSD;
-        const supplyDailyAmount = new Decimal(suppliedToken)
-          .mul(asset.supply_apr || 0)
-          .div(365);
-        const supplyDailyAmountUsd = supplyDailyAmount.mul(
-          asset.price?.usd ?? 0
-        );
-        return standardizeAsset({
-          tokenId,
-          metadata: asset.metadata,
-          symbol:
-            tokenId === "aurora" ? "ETH Deprecated" : asset.metadata.symbol,
-          icon: asset.metadata.icon,
-          price: asset.price?.usd ?? 0,
-          apy: Number(portfolioAssets[tokenId].apr) * 100,
-          collateral: Number(collateral),
-          supplied: suppliedToken,
-          canUseAsCollateral: asset.config.can_use_as_collateral,
-          canWithdraw: asset.config.can_withdraw,
-          rewards: [
-            ...getPortfolioRewards(
-              "supplied",
-              asset,
-              account.portfolio.farms.supplied[tokenId],
-              assets.data
-            ),
-            ...getPortfolioRewards(
-              "tokennetbalance",
-              asset,
-              account.portfolio.farms.tokennetbalance[tokenId],
-              assets.data
-            ),
-          ],
-          supplyReward: isLpToken
-            ? null
-            : {
-                supplyDailyAmount: supplyDailyAmount.toFixed(),
-                supplyDailyAmountUsd: supplyDailyAmountUsd.toFixed(),
-                metadata: asset.metadata,
-              },
-          depositRewards: getRewards("supplied", asset, assets.data),
-          totalSupplyMoney: toUsd(totalSupplyD, asset),
-        });
-      })
-      .filter(app.showDust ? Boolean : emptySuppliedAsset);
+      const suppliedUSD = Number(asset.price?.usd || 0) * suppliedToken;
+      totalSuppliedUSD += suppliedUSD;
+      const supplyDailyAmount = new Decimal(suppliedToken)
+        .mul(asset.supply_apr || 0)
+        .div(365);
+      const supplyDailyAmountUsd = supplyDailyAmount.mul(asset.price?.usd ?? 0);
+      return standardizeAsset({
+        tokenId,
+        metadata: asset.metadata,
+        symbol: tokenId === "aurora" ? "ETH Deprecated" : asset.metadata.symbol,
+        icon: asset.metadata.icon,
+        price: asset.price?.usd ?? 0,
+        apy: Number(portfolioAssets[tokenId].apr) * 100,
+        collateral: Number(collateral),
+        supplied: suppliedToken,
+        canUseAsCollateral: asset.config.can_use_as_collateral,
+        canWithdraw: asset.config.can_withdraw,
+        rewards: [
+          ...getPortfolioRewards(
+            "supplied",
+            asset,
+            account.portfolio.farms.supplied[tokenId],
+            assets.data
+          ),
+          ...getPortfolioRewards(
+            "tokennetbalance",
+            asset,
+            account.portfolio.farms.tokennetbalance[tokenId],
+            assets.data
+          ),
+        ],
+        supplyReward: isLpToken
+          ? null
+          : {
+              supplyDailyAmount: supplyDailyAmount.toFixed(),
+              supplyDailyAmountUsd: supplyDailyAmountUsd.toFixed(),
+              metadata: asset.metadata,
+            },
+        depositRewards: getRewards("supplied", asset, assets.data),
+        totalSupplyMoney: toUsd(totalSupplyD, asset),
+      });
+    });
+    // .filter(app.showDust ? Boolean : emptySuppliedAsset);
     // borrow from regular position
     const borrowed = Object.keys(account.portfolio.borrowed || {})
       .map((tokenId) => {

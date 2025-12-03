@@ -11,7 +11,7 @@ import {
   process_signature_btc,
   process_signature_solana,
   process_signature_evm,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message_btc } from "@/services/chains/btc";
 import { sign_message_solana } from "@/services/chains/solana";
 import { sign_message_evm } from "@/services/chains/evm";

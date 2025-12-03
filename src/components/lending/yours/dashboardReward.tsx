@@ -2,7 +2,7 @@ import Decimal from "decimal.js";
 import { shrinkToken } from "@/utils/numbers";
 import { standardizeAsset } from "@/utils/lendingUtil";
 import { IReward } from "@/interface/lending";
-import { IMetadata } from "rhea-cross-chain-sdk";
+import { IMetadata } from "@rhea-finance/cross-chain-sdk";
 import { beautifyNumber } from "@/utils/beautifyNumber";
 
 interface RewardProps {

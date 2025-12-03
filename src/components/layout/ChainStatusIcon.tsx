@@ -1,6 +1,6 @@
 import useWalletConnect from "@/hooks/useWalletConnect";
 import { Img } from "../common/img";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import useChainsLendingStatus from "@/hooks/useChainsLendingStatus";
 
 interface ChainIconConfig {

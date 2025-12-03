@@ -2,7 +2,7 @@ import {
   IAssetFarmReward,
   IMetadata,
   IAssetConfig,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 interface IAssetFarmRewardPortfolio extends IAssetFarmReward {
   asset_farm_reward: IAssetFarmReward;
   boosted_shares: "string";

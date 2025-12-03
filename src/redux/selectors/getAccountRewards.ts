@@ -3,9 +3,13 @@ import { createSelector } from "@reduxjs/toolkit";
 import _, { omit } from "lodash";
 import { shrinkToken } from "@/utils/numbers";
 import { RootState } from "../store";
-import { Asset } from "rhea-cross-chain-sdk";
+import { Asset } from "@rhea-finance/cross-chain-sdk";
 import { AssetsState } from "../state/assetState";
-import { Farm, AccountFarmRewardView, Portfolio } from "rhea-cross-chain-sdk";
+import {
+  Farm,
+  AccountFarmRewardView,
+  Portfolio,
+} from "@rhea-finance/cross-chain-sdk";
 import { IAccountFarms } from "../state/accountState";
 import { getStaking } from "./getStaking";
 import { INetTvlFarmRewards } from "@/interface/lending";
@@ -18,7 +22,7 @@ import {
   filterAccountAllSentOutFarms,
 } from "@/utils/lendingUtil";
 import { getMarketRewardsDataUtil } from "./getMarketRewards";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 const { XRHEA_TOKEN_ID } = config_near;
 
 export interface IPortfolioReward {
@@ -280,7 +284,8 @@ export const computePoolsDailyAmount = (
   boost_suppress_factor: number
 ) => {
   // const position = asset.token_id.indexOf(lpTokenPrefix) > -1 ? asset.token_id : DEFAULT_POSITION;
-  const boosterLogBase_ = farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID];
+  const boosterLogBase_ =
+    farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID];
   const boosterLogBase = Number(shrinkToken(boosterLogBase_, boosterDecimals));
   const assetDecimals =
     asset?.metadata?.decimals + asset?.config?.extra_decimals;
@@ -389,7 +394,8 @@ export const computeNetLiquidityDailyAmount = (
   xBRRR: number,
   boost_suppress_factor: number
 ) => {
-  const boosterLogBase_ = farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID]
+  const boosterLogBase_ =
+    farmData?.asset_farm_reward?.booster_log_bases?.[XRHEA_TOKEN_ID];
   const boosterLogBase = Number(shrinkToken(boosterLogBase_, boosterDecimals));
 
   const assetDecimals = asset.metadata.decimals + asset.config.extra_decimals;
@@ -542,7 +548,8 @@ export const getAccountRewards = createSelector(
         newDailyAmount,
         multiplier,
         price: rewardAsset?.price?.usd || 0,
-        unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset?.price?.usd || 0),
+        unclaimedAmountUSD:
+          unclaimedAmount * Number(rewardAsset?.price?.usd || 0),
         remaining_rewards:
           farmData?.asset_farm_reward?.remaining_rewards || "0",
       };
@@ -653,7 +660,8 @@ export const getAccountRewardsForApy = createSelector(
             newDailyAmount,
             multiplier,
             price: rewardAsset.price?.usd || 0,
-            unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset.price?.usd || 0),
+            unclaimedAmountUSD:
+              unclaimedAmount * Number(rewardAsset.price?.usd || 0),
             assetTokenId: tokenId,
           };
         });
@@ -693,7 +701,8 @@ export const getAccountRewardsForApy = createSelector(
         newDailyAmount,
         multiplier,
         price: rewardAsset.price?.usd || 0,
-        unclaimedAmountUSD: unclaimedAmount * Number(rewardAsset.price?.usd || 0),
+        unclaimedAmountUSD:
+          unclaimedAmount * Number(rewardAsset.price?.usd || 0),
       };
     };
 

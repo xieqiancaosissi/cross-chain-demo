@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { useAvailableAssets } from "@/hooks/lending/hooks";
 import { getRandomString } from "@/utils/common";

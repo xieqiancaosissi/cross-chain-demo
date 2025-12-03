@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
-import { config_evm } from "rhea-cross-chain-sdk";
+import { config_evm } from "@rhea-finance/cross-chain-sdk";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { ethers } from "ethers";

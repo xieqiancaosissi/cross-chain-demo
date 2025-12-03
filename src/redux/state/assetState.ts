@@ -1,4 +1,4 @@
-import { IAssetsView, IFarms } from "rhea-cross-chain-sdk";
+import { IAssetsView, IFarms } from "@rhea-finance/cross-chain-sdk";
 
 export interface AssetsState {
   data: IAssetsView;

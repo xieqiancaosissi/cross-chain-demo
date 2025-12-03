@@ -1,4 +1,4 @@
-import { IFarm, IBoosterStaking } from "rhea-cross-chain-sdk";
+import { IFarm, IBoosterStaking } from "@rhea-finance/cross-chain-sdk";
 interface ICollateralAsset {
   token_id: string;
   shares: string;

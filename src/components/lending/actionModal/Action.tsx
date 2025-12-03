@@ -35,7 +35,7 @@ import {
   config_near,
   format_wallet,
   postMultichainLendingReport,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { useUpdateTokenChainBalance } from "@/hooks/useChainsLendingBalance";
 import useChainsLendingStatus, {
   useSelectedChainStatus,

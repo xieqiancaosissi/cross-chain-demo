@@ -4,12 +4,20 @@ import { pick, omit } from "ramda";
 import { isEmpty } from "lodash";
 import { shrinkToken } from "@/utils/numbers";
 import type { AssetsState } from "@/redux/state/assetState";
-import type { Asset } from "rhea-cross-chain-sdk";
-import type { Assets, IAssetFarmReward, IAssetsView } from "rhea-cross-chain-sdk";
+import type { Asset } from "@rhea-finance/cross-chain-sdk";
+import type {
+  Assets,
+  IAssetFarmReward,
+  IAssetsView,
+} from "@rhea-finance/cross-chain-sdk";
 import type { AccountState } from "@/redux/state/accountState";
 import type { AppState } from "@/redux/slice/appSlice";
 import { UIAsset, IPortfolioReward } from "@/interface/lending";
-import { AccountFarmRewardView, Farm, Portfolio } from "rhea-cross-chain-sdk";
+import {
+  AccountFarmRewardView,
+  Farm,
+  Portfolio,
+} from "@rhea-finance/cross-chain-sdk";
 import { nearMetadata, fraxMetadata, YUMetadata } from "@/utils/tokens";
 import { formatSymbolName } from "@/utils/chainsUtil";
 

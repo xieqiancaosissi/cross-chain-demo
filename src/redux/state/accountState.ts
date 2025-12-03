@@ -1,9 +1,9 @@
-import { Portfolio } from "rhea-cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
 import {
   Farm,
   initialStaking,
   AccountFarmRewardView,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 
 interface Balance {
   [tokenId: string]: string;

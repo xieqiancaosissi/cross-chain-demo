@@ -24,7 +24,7 @@ import {
   config_solana,
   prepare_sign_message_solana,
   process_signature_solana,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { shrinkToken, expandToken } from "@/utils/numbers";
 
 export async function transfer_solana({

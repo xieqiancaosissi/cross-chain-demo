@@ -4,7 +4,7 @@ import {
   getAssetsDetail,
   get_token_detail,
   get_interest_rate,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 
 const getSupplyDetails = (tokenDetailDays) => {
   return tokenDetailDays.map((d) => {

@@ -3,12 +3,12 @@ import Decimal from "decimal.js";
 import { clone } from "ramda";
 import { RootState } from "../store";
 import { transformAsset, hasAssets } from "@/utils/lendingUtil";
-import { IAssetsView } from "rhea-cross-chain-sdk";
+import { IAssetsView } from "@rhea-finance/cross-chain-sdk";
 import { getAdjustedSum } from "./getWithdrawMaxAmount";
 import { DEFAULT_POSITION, MAX_RATIO } from "@/services/constantConfig";
 import { UIAsset } from "@/interface/lending";
 import { AccountState } from "@/redux/state/accountState";
-import { Portfolio } from "rhea-cross-chain-sdk"
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
 
 export const computeBorrowMaxAmount = (
   tokenId: string,

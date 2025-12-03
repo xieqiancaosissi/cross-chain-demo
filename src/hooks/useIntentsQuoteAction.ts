@@ -13,7 +13,7 @@ import {
   intentsQuotationUi,
 } from "@/services/lending/actions/commonAction";
 import { TokenAction } from "@/redux/slice/appSlice";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 declare global {
   interface Window {
     ethProvider: ReturnType<typeof useConnectWallet>[0]["wallet"]["provider"];

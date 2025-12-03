@@ -2,7 +2,7 @@ import {
   IChain,
   getMcaByWallet,
   getListWalletsByMca,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { useChainAccountStore } from "@/stores/chainAccount";
 export default function useFetchMcaAndWallets() {
   const chainAccountStore = useChainAccountStore();

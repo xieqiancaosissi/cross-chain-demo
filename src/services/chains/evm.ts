@@ -11,7 +11,7 @@ import {
   IIntentItem,
   prepare_sign_message_evm,
   process_signature_evm,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { expandToken } from "@/utils/numbers";
 import { formatAmount } from "@/utils/chainsUtil";
 import { IChainTokenMetadata } from "@/interface/lending/tokens";

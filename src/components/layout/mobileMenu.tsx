@@ -6,7 +6,7 @@ import { Img } from "../common/img";
 import useWalletConnect from "@/hooks/useWalletConnect";
 import { useAppDispatch } from "@/hooks/lending/useRedux";
 import { showWalletModal } from "@/redux/slice/appSlice";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import { MobileMenuIcon } from "../common/Icons";
 import { MENU_ITEMS, isMenuActive } from "./menuConfig";
 import { ChainStatusIcon } from "./ChainStatusIcon";

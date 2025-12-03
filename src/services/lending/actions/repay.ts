@@ -1,4 +1,4 @@
-import { IChain, IExecutionResult } from "rhea-cross-chain-sdk";
+import { IChain, IExecutionResult } from "@rhea-finance/cross-chain-sdk";
 import { outChainToNearChainIntentsAction } from "./commonAction";
 
 export async function repay({

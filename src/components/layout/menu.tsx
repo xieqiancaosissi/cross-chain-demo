@@ -3,7 +3,7 @@ import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import useWalletConnect from "@/hooks/useWalletConnect";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import { useAppDispatch } from "@/hooks/lending/useRedux";
 import { showWalletModal } from "@/redux/slice/appSlice";
 import { MENU_ITEMS, isMenuActive } from "./menuConfig";

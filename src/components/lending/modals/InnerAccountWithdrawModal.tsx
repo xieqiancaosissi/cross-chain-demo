@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { DefaultModal } from "@/components/common/modal";
 import { useAppSelector } from "@/hooks/lending/useRedux";
 import { shrinkToken } from "@/utils/numbers";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 import Decimal from "decimal.js";
 import { beautifyNumber } from "@/utils/beautifyNumber";
 import { formatSymbolName } from "@/utils/chainsUtil";

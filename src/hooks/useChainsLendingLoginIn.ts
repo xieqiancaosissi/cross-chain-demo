@@ -5,7 +5,7 @@ import {
   IChain,
   getMcaByWallet,
   getListWalletsByMca,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { IWalletData } from "@/interface/lending/chains";
 import { useChainAccountStore } from "@/stores/chainAccount";
 import { getWalletModalStatus } from "@/redux/selectors/appSelectors";

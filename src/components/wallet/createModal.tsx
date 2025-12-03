@@ -11,7 +11,7 @@ import failToast from "@/components/common/toast/failToast";
 import useFetchMcaAndWallets from "@/hooks/useFetchMcaAndWallets";
 import { useAppDispatch } from "@/hooks/lending/useRedux";
 import { useChainAccountStore } from "@/stores/chainAccount";
-import { pollingTransactionStatus } from "rhea-cross-chain-sdk";
+import { pollingTransactionStatus } from "@rhea-finance/cross-chain-sdk";
 import { showIntentsModal } from "@/redux/slice/appSlice";
 import { useSelectedChainSymbolBalance } from "@/hooks/useChainsLendingStatus";
 import {

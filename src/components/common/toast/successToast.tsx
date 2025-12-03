@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 import { CloseIcon, PopSuccessfulIcon } from "@/components/common/Icons";
 const successToast = (params?: {
   successText?: string;

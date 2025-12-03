@@ -25,10 +25,11 @@ const getTotalCollateral = createSelector(
       const assetData = assets.data[token_id];
       if (!assetData) return 0;
       const { price, metadata, config } = assetData;
-      const tokenUsd = new Decimal(shrinkToken(
-        d?.balance || 0,
-        metadata.decimals + config.extra_decimals
-      )).mul(price?.usd || 0).toNumber();
+      const tokenUsd = new Decimal(
+        shrinkToken(d?.balance || 0, metadata.decimals + config.extra_decimals)
+      )
+        .mul(price?.usd || 0)
+        .toNumber();
       return tokenUsd;
     });
 

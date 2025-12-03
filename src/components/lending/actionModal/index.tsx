@@ -49,7 +49,7 @@ import {
   SetUpFeeSelector,
 } from "./components";
 import Controls from "./Controls";
-import { view_on_near, config_near } from "rhea-cross-chain-sdk";
+import { view_on_near, config_near } from "@rhea-finance/cross-chain-sdk";
 import { useChainAccountStore } from "@/stores/chainAccount";
 import useChainsLendingStatus, {
   useSelectedChainStatus,

@@ -7,7 +7,7 @@ import {
   NDeposit,
   prepareBusinessDataOninnerWithdraw,
   IExecutionResult,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message, formatErrorMessage } from "@/utils/chainsUtil";
 import { TOKEN_STORAGE_DEPOSIT_READ } from "@/services/constantConfig";
 import { getOutChainAssetAndNearChainAssetOnUi } from "./commonAction";

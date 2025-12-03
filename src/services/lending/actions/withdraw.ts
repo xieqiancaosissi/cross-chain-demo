@@ -9,7 +9,7 @@ import {
   postMultichainLendingRequests,
   pollingRelayerTransactionResult,
   prepareBusinessDataOnWithdraw,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 import { sign_message } from "@/utils/chainsUtil";
 import { getOutChainAssetAndNearChainAssetOnUi } from "./commonAction";
 

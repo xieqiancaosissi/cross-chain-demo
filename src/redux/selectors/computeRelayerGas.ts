@@ -6,12 +6,12 @@ import { shrinkToken } from "@/utils/numbers";
 import { MAX_RATIO } from "@/services/constantConfig";
 import { RootState } from "@/redux/store";
 import { getAdjustedSum } from "@/redux/selectors/getWithdrawMaxAmount";
-import { Portfolio } from "rhea-cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
 import { AssetsState } from "@/redux/state/assetState";
 import { DEFAULT_POSITION } from "@/services/constantConfig";
 import { expandTokenDecimal } from "@/utils/numbers";
 import { decimalMax, decimalMin, hasAssets } from "@/utils/lendingUtil";
-import { config_near } from "rhea-cross-chain-sdk";
+import { config_near } from "@rhea-finance/cross-chain-sdk";
 const { WRAP_NEAR_CONTRACT_ID } = config_near;
 
 export const computeRelayerGas = ({
@@ -181,6 +181,7 @@ function searchMatchAssetId({
   const _suppliesUsd = portfolio.supplies?.map((item) => {
     const { token_id, balance } = item;
     const _asset = assets.data[token_id];
+    console.log("--------------------------------_asset", _asset, token_id);
     const _price = _asset.price?.usd || 0;
     const _amount = shrinkToken(
       balance,

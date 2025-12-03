@@ -14,7 +14,7 @@ import {
 
 import { fetchAssets } from "@/redux/slice/assetsSlice";
 import { useAppDispatch } from "@/hooks/lending/useRedux";
-import { batchViews } from "rhea-cross-chain-sdk";
+import { batchViews } from "@rhea-finance/cross-chain-sdk";
 
 export const useFetchData = () => {
   const dispatch = useAppDispatch();

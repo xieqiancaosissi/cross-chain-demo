@@ -1,5 +1,5 @@
 import { DefaultModal } from "@/components/common/modal";
-import { IChain } from "rhea-cross-chain-sdk";
+import { IChain } from "@rhea-finance/cross-chain-sdk";
 import { IWalletData } from "@/interface/lending/chains";
 import { Button } from "@heroui/react";
 import { getAccountIdUi } from "@/utils/chainsUtil";

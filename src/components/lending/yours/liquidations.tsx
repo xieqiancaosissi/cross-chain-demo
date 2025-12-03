@@ -4,7 +4,7 @@ import { shrinkToken } from "@/utils/numbers";
 import { useAppDispatch, useAppSelector } from "@/hooks/lending/useRedux";
 import { getAssets } from "@/redux/selectors/assetsSelectors";
 import { getAccountId } from "@/redux/selectors/accountSelectors";
-import { get_liquidations } from "rhea-cross-chain-sdk";
+import { get_liquidations } from "@rhea-finance/cross-chain-sdk";
 import { setUnreadLiquidation } from "@/redux/slice/appSlice";
 import { getDateString } from "@/utils/lendingUtil";
 import { beautifyNumber } from "@/utils/beautifyNumber";

@@ -7,7 +7,7 @@ import type { AppProps } from "next/app";
 import DefaultLayout from "@/components/layout/defaultLayout";
 import { HeroUIProvider } from "@heroui/react";
 import { Web3OnboardProvider } from "@web3-onboard/react";
-import { config_solana } from "rhea-cross-chain-sdk";
+import { config_solana } from "@rhea-finance/cross-chain-sdk";
 import { solalaWallets, web3Onboard } from "@/services/wallets";
 import {
   WalletProvider,

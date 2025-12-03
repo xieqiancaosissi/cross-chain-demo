@@ -5,8 +5,8 @@ import { RootState } from "../store";
 import { shrinkToken, expandTokenDecimal } from "@/utils/numbers";
 import { MAX_RATIO, DEFAULT_POSITION } from "@/services/constantConfig";
 import { decimalMax, decimalMin } from "@/utils/lendingUtil";
-import { IAssetsView } from "rhea-cross-chain-sdk";
-import { Portfolio } from "rhea-cross-chain-sdk";
+import { IAssetsView } from "@rhea-finance/cross-chain-sdk";
+import { Portfolio } from "@rhea-finance/cross-chain-sdk";
 
 const sumReducerDecimal = (sum: Decimal, cur: Decimal) => sum.add(cur);
 

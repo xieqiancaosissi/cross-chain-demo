@@ -8,7 +8,7 @@ import {
   getAllFarms,
   transformAssets,
   transformFarms,
-} from "rhea-cross-chain-sdk";
+} from "@rhea-finance/cross-chain-sdk";
 export const fetchAssets = createAsyncThunk(
   "assets/fetchAssets",
   async ({
