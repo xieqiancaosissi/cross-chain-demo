@@ -1,3 +1,5 @@
+# ⚠️ Deprecated
+
 This repository has been deprecated and migrated to [https://github.com/rhea-finance/cross-chain-demo].
 
 Please use the new repository for the latest updates and contributions.
