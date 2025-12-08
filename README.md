@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+This repository has been deprecated and migrated to [https://github.com/rhea-finance/cross-chain-demo].
+
+Please use the new repository for the latest updates and contributions.
 
 ## Getting Started
 
